@@ -30,13 +30,14 @@ Klasa f2(Klasa k1)
     cout<<"a(f2) = "<<k1.getA()<<endl;
     k1.setA(20);
     cout<<"a(f2) = "<<k1.getA()<<endl;
+    return k1;
 }
 
 int main()
 {
     Klasa k;
     cout<<"Poziv f2 (vraca vrijednost): "<<endl;
-    f1(k);
+    f2(k);
     cout<<"Vrijednost nakon poziva f2: "<<k.getA()<<endl;
     return 0;
 }
