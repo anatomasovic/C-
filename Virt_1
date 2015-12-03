@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+class Vozilo
+{
+  public:
+    double brzina;
+    Vozilo() { brzina = 100; }
+    virtual void ubrzaj() = 0;
+    virtual void uspori() = 0;
+};
+
+class Automobil : public Vozilo
+{
+  public:
+    virtual void ubrzaj() { brzina += 10; }
+    virtual void uspori() { brzina -= 10; }
+};
+
+class Avion : public Vozilo
+{
+  public:
+    virtual void ubrzaj() { brzina += 100; }
+    virtual void uspori() { brzina -= 100; }
+};
+
+int main()
+{
+  Vozilo *automobil = new Automobil;
+  Vozilo *avion = new Avion;
+  automobil->ubrzaj();
+  automobil->ubrzaj();
+  avion->uspori();
+  cout<<automobil->brzina<<endl;
+  return 0;
+}
