@@ -5,52 +5,38 @@ using namespace std;
 
 class Vlasnik
 {
-    private:
-        string ime, prezime;
-    public:
-        void setIme(string i) { ime = i; }
-        void setPrezime(string p) { prezime = p; }
-        string getIme() { return ime; }
-        string getPrezime() { return prezime; }
+	private:
+		string *ime;
+	public:
+		string *prezime;
+		void setIme(string ime) { *(this->ime) = ime; }
+		void setPrezime(string prezime) { *(this->prezime) = prezime; }
+		Vlasnik() { ime = new string; prezime = new string; }
+		~Vlasnik() { delete ime, prezime; }
 };
 
 class Automobil
 {
-    private:
-        Vlasnik vl;
-        string registracija;
-    public:
-        void setVlasnik(Vlasnik vl, string im, string pr) { vl.setIme(im); vl.setPrezime(pr); }
-        void setReg(string r) { registracija = r; }
-        string getReg() { return registracija; }
+	public:
+		Vlasnik *vl;
+		string *reg;
+		Automobil() { vl = new Vlasnik; reg = new string; }
+		~Automobil() { delete vl, reg; }
 };
 
 int main()
 {
-    cout<<"Unesi broj vozila: ";
-    int br;
-    cin>>br;
-    string name, surname, reg;
-    Automobil *p = new Automobil[br];
-    Vlasnik *v = new Vlasnik[br];
-    cout<<"Unesi podatke:\n";
-    for (int i = 0; i < br; i++)
-    {
-        cout<<"Vlasnik: "<<endl;
-        cin>>name;
-        cin>>surname;
-        p[i].setVlasnik(v[i], name, surname);
-        cout<<"Registracija: ";
-        cin>>reg;
-        p[i].setReg(reg);
-    }
-    for (int i = 0; i < br; i++)
-    {
-        cout<<"Vlasnik: "<<v[i].getIme()<<" ";
-        cout<<v[i].getPrezime()<<endl;
-        cout<<"Registracija: "<<p[i].getReg()<<endl;
-    }
-    delete []v;
-    delete []p;
+	cout<<"Unesi broj vozila: ";
+	string i, p;
+	int br;
+	cin>>br;
+	Automobil *a = new Automobil[br];
+	for (int i = 0; i < br; i++)
+	{
+		cout<<"Vlasnik automobila: ";
+		cin>>i;
+		(a+i)->vl->setIme();
+	}
+	delete []a;
     return 0;
 }
